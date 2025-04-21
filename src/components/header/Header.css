@@ -1,0 +1,52 @@
+.hero {
+    
+}
+
+.hero__container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 20px;
+}
+
+.hero__container .row__one {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.hero__container .row__one .sale {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #272727;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.hero__container .row__one .bell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #272727;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.hero__container .row__one .user {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #272727;
+    color: #fff;
+    border-radius: 50px;
+}

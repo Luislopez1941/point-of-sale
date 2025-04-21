@@ -1,0 +1,146 @@
+.form__moral_person {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+}
+
+.moral_person_create .container_head {
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.moral_person_create .container_head>h2 {}
+
+
+.moral_person_create .container_head>p {}
+
+
+.moral_person_create>.row__one {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.moral_person_create>.row__one .btn__moral-person {
+  display: flex;
+  background-color: var(--primary-color);
+  gap: 20px;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+
+
+}
+
+.moral_person_create>.row__one .btn__natural-person {
+  display: flex;
+  background-color: var(--primary-color);
+  gap: 20px;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+.form__moral_person>.row__one {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+.form__moral_person>.row__two {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+}
+
+.moral_person_create .form__moral_person .row__three {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+
+.moral_person_create .form__moral_person .row__three .btn__create button {
+  padding: 0 20px;
+}
+
+
+.moral_person_create .form__moral_person .row__three .btn__login button {
+  border: none;
+  background-color: transparent;
+  border-radius: 5px;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 10px;
+  font-weight: 600;
+}
+
+
+.moral_person_create .form__moral_person>.row__two .email,
+.moral_person_create .form__moral_person>.row__two .password,
+.moral_person_create .form__moral_person>.row__two .phone {
+  color: #6c6c6e;
+}
+.moral_person_create .form__moral_person>.row__two .email .label__general,
+.moral_person_create .form__moral_person>.row__two .password .label__general,
+.moral_person_create .form__moral_person>.row__two .phone .label__general {
+  display: none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .form__moral_person>.row__one {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .form__moral_person>.row__two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+  }
+
+  .moral_person_create .form__moral_person>.row__three {
+    display: grid;
+  }
+
+
+  .moral_person_create .form__moral_person>.row__three .btn__login {
+    display: flex;
+    justify-content: center;
+  }
+
+  .moral_person_create .form__moral_person .row__three .btn__login button {
+    padding: 0 20px;
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+    border: none;
+  }
+
+
+}
+
+@media screen and (max-width: 450px) {
+  .form__moral_person>.row__two>.email {
+    grid-column: 1 / 3;
+  }
+
+  .form__moral_person>.row__two>.password {
+    grid-column: 1 / 3;
+  }
+
+  .form__moral_person>.row__two>.phone {
+    grid-column: 1 / 3;
+  }
+}

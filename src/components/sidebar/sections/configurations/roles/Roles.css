@@ -1,0 +1,92 @@
+.roles {
+
+}
+
+.roles__container {
+
+}
+
+.roles__container > .row__one {
+    display: flex;
+    justify-content: center;
+}
+
+
+.roles__container {
+    padding: 20px;
+}
+
+
+
+.table__roles {
+    margin-top: 20px;
+    border-radius: 10px;
+	text-align: justify;
+    width: 100%;
+}
+
+
+.table__roles .table__head {
+    display: flex;
+    width: 100%;
+    background-color: #1f2124;
+    color: #f5f6f7;
+    border-radius: 5px 5px 0 0;
+}
+
+.table__roles .table__head .thead {
+    display: grid;
+	width: 100%;
+    grid-template-columns: repeat(2, 1fr) 100px 100px;
+	
+    padding: 10px;
+    font-weight: 600;
+}
+
+.table__roles .table__body {
+	height: 500px;
+    overflow: hidden;
+    overflow: auto;
+    transition-delay: 0.0s;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #1F319D; 
+        border-radius: 5px;
+        height: 100px;
+    }
+
+    &::-webkit-scrollbar-track {
+    /* Para modificar el background */
+    }
+}
+
+
+.table__roles .tbody__container:nth-child(even) {
+    background-color: var(--first-body-table-color);
+    color: #f5f6f7;
+  }
+  
+  .table__roles .tbody__container:nth-child(odd) {
+    background-color: var(--second-body-table-color);
+    color: #f5f6f7;
+   
+  }
+
+  .table__roles .table__body .tbody {
+    display: flex;
+} 
+
+.table__roles .table__body .tbody {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 100px 100px;
+    padding: 10px;
+}
+
+.table__roles .table__body .tbody:hover {
+    background-color: var(--hover-body-table-color);
+    color: #fff;
+}
+

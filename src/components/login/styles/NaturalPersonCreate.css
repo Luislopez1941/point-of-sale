@@ -1,0 +1,185 @@
+.natural_person_create {}
+
+.natural_person_create .container_head {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.natural_person_create .container_head > h2 {
+   
+}
+
+
+.natural_person_create .container_head > p {
+   
+}
+
+
+.natural_person_create > .row__one {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.natural_person_create>.row__one .btn__moral-person {
+    display: flex;
+    background-color: var(--primary-color);
+    gap: 20px;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    
+
+}
+
+.natural_person_create>.row__one .btn__natural-person  {
+    display: flex;
+    background-color: var(--primary-color);
+    gap: 20px;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.natural_person_create .form__natural_person {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+
+.natural_person_create .form__natural_person .row__three {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.natural_person_create .form__natural_person .row__three .btn__login button {
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px;
+    font-weight: 600;
+    
+}
+
+
+.natural_person_create .form__natural_person .row__three .btn__create button {
+ 
+}
+
+
+.form__natural_person .form__natural_person_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+
+}
+
+
+.form__natural_person>.form__natural_person_container .row__two {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+}
+
+.form__natural_person>.form__natural_person_container > .row__two .email,
+.form__natural_person>.form__natural_person_container > .row__two .password,
+.form__natural_person>.form__natural_person_container > .row__two .phone {
+    color: #6c6c6e;
+  }
+
+@media screen and (max-width: 768px) {
+    .form__natural_person>.form__natural_person_container > .row__two {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    
+    }
+
+   
+      
+    .form__natural_person>.form__natural_person_container > .row__two .email,
+    .form__natural_person>.form__natural_person_container > .row__two .password,
+    .form__natural_person>.form__natural_person_container > .row__two .phone {
+        grid-column: 1 / 3;
+      }
+
+      .form__natural_person>.form__natural_person_container > .row__two .email .label__general,
+.form__natural_person>.form__natural_person_container > .row__two .password .label__general,
+.form__natural_person>.form__natural_person_container > .row__two .phone .label__general {
+    display: none;
+  }
+
+    .natural_person_create .form__natural_person .row__three {
+        display: grid;
+        
+    }
+
+    .natural_person_create .form__natural_person .row__three .btn__login {
+        display: flex;
+        justify-content: center;    
+    }
+
+    .natural_person_create .form__natural_person .row__three .btn__login button {
+        border: none;
+        background-color: transparent;
+        color: var(--primary-color);
+        font-weight: 600;
+        border: none;
+    }
+    
+}
+
+@media screen and (max-width: 450px) {
+    .form__natural_person>.row__two {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+    }
+
+    .form__natural_person>.row__two>.email {
+        grid-column: 1 / 3;
+
+    }
+
+    .form__natural_person>.row__two>.password {
+        grid-column: 1 / 3;
+
+    }
+
+    .form__natural_person>.row__two>.phone {
+        grid-column: 1 / 3;
+
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .form__natural_person>.form__natural_person_container > .row__two {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    
+    }
+
+    .form__moral_person > .row__two {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+      }
+      
+      .form__moral_person > .row__two .email,
+      .form__moral_person > .row__two .password {
+        grid-column: 1 / 3;
+      }
+}
+
+
