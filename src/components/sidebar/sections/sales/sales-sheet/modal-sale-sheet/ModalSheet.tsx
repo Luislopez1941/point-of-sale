@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react';
 import './ModalSheet.css';
 import { useDispatch, useSelector } from "react-redux";
 import { modal } from '../../../../../../redux/state/modals';
 import APIs from '../../../../../../services/APIs';
 
 
-const ModalSheet = () => {
+const ModalSheet: React.FC = () => {
 
   const dispatch = useDispatch();
 
@@ -35,8 +34,6 @@ const ModalSheet = () => {
   })
 
 
-  const [loading, setLoading] = useState(false);
-
   const handleSearchCodeChange = async (code: string) => {
 
     if (code === fields.codigo) return;  // No hacer nada si el código no ha cambiado
@@ -45,7 +42,7 @@ const ModalSheet = () => {
       codigo: code,
     }));
     setSearchTermLenghtCT(code)
-    setLoading(true);  // Inicia el loading
+
     try {
       const response: any = await APIs.getProducts(code, '');
       console.log(response.data)
@@ -54,7 +51,7 @@ const ModalSheet = () => {
     } catch (error) {
       console.error('Error al obtener los productos:', error);
     } finally {
-      setLoading(false);  // Termina el loading
+
     }
   };
 
@@ -64,7 +61,7 @@ const ModalSheet = () => {
       ...prev,
       name: name,
     }));
-    setLoading(true);  // Inicia el loading
+  
     try {
       const response: any = await APIs.getProducts('', name);
       setProducts(response.data || []);
@@ -72,7 +69,7 @@ const ModalSheet = () => {
     } catch (error) {
       console.error('Error al obtener los productos:', error);
     } finally {
-      setLoading(false);  // Termina el loading
+    
     }
   };
 
@@ -82,7 +79,7 @@ const ModalSheet = () => {
     setSearchTermLenghtCT('')
   }
 
-  const [discount, setDiscount] = useState<any>(0)
+  const [discount] = useState<any>(0)
 
   return (
     <div className={`overlay__sales-sheet_modal ${modalState === 'sales-sheet_modal' ? 'active' : ''}`}>

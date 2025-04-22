@@ -16,4 +16,9 @@
     padding: 10px;
     background-color: #1f2124;
     border-radius: 5px;
+    color: #fff;
+}
+
+.options__menu_container>.row__one>.item a {
+    color: #fff;
 }

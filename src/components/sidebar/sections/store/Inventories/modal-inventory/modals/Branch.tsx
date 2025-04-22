@@ -147,7 +147,6 @@ const Branch: React.FC = () => {
         let filter = branchs.filter((_: any, index: any) => index !== i)
         console.log(filter)
         dispatch(setBranch(filter))
-    
     }
 
     return (

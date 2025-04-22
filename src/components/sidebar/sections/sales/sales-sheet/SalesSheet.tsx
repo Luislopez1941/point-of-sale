@@ -3,7 +3,6 @@ import './SalesSheet.css'
 import { useDispatch } from "react-redux";
 import { modal } from '../../../../../redux/state/modals';
 import ModalSheet from './modal-sale-sheet/ModalSheet';
-import APIs from '../../../../../services/APIs';
 
 
 const SalesSheet: React.FC = () => {

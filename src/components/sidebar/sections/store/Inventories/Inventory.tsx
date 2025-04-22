@@ -18,7 +18,7 @@ const Inventory: React.FC = () => {
       // }
 
       try {
-          let response: any = await APIs.getProducts()
+          let response: any = await APIs.getProducts('', '')
           setProducts(response.data)
       } catch (error) {
 

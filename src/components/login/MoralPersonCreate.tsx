@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { setStatusCreate } from '../../redux/state/login/Login'; // Importar la acción
 import { setStatusLogin } from '../../redux/state/login/Login'; // Importar la acción
 import APIs from '../../services/APIs';
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 
 
 const MoralPersonCreate: React.FC = () => {
