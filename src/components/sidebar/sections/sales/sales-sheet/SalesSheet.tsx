@@ -3,6 +3,7 @@ import './SalesSheet.css'
 import { useDispatch } from "react-redux";
 import { modal } from '../../../../../redux/state/modals';
 import ModalSheet from './modal-sale-sheet/ModalSheet';
+import APIs from '../../../../../services/APIs';
 
 
 const SalesSheet: React.FC = () => {
@@ -16,6 +17,7 @@ const SalesSheet: React.FC = () => {
   };
 
 
+
   return (
     <div className='sale__sheet'>
       <div className='sale__sheet_container'>
@@ -24,7 +26,7 @@ const SalesSheet: React.FC = () => {
             <div className='search'>
               <div className='inputs__general_icons'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
-                <input className='inputs__generic' placeholder='Buscar' type="text" name="" id="" />
+                <input className='inputs__generic' placeholder='Buscar' type="text" name=""  />
               </div>
               <div>
                 <button className='btn__general-primary'>Agregar</button>

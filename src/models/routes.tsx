@@ -31,7 +31,7 @@ export const PublicRoutes = {
     CATEGORIES: 'categories',
     UNITS: 'units',
 
-
+    INCOME: 'income',
 
 
     PRODUCTS: 'products'

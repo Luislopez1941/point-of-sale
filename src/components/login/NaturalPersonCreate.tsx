@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { setStatusCreate } from '../../redux/state/login/Login'; // Importar la acción
 import { setStatusLogin } from '../../redux/state/login/Login'; // Importar la acción
 import APIs from '../../services/APIs';
+import { Toaster, toast } from 'sonner'
+
 
 const NaturalPersonCreate: React.FC = () => {
 
@@ -30,16 +32,22 @@ const NaturalPersonCreate: React.FC = () => {
 
   const createNaturalPerson = async () => {
     try {
-      let response = await APIs.cresteUser(fields)
-      console.log(response)
+      let response: any = await APIs.cresteUser(fields)
+      if (response.status == 'warning') {
+        return toast.warning(response.message)
+      }
+      if (response.status == 'success') {
+        return toast.success(response.message)
+      }
     } catch (error) {
-
+      toast.success('Error al crear la cuenta')
     }
   }
 
 
   return (
     <div className='natural_person_create'>
+
       <div className='container_head'>
         <h2>Crea tu cuenta personal</h2>
         <p>Administra tus empresas y accede a todas las funcionalidades</p>
@@ -107,7 +115,7 @@ const NaturalPersonCreate: React.FC = () => {
             <button className='btn__general-primary' type='button' onClick={createNaturalPerson}>Crear una demo</button>
           </div>
           <div className='btn__login'>
-            <button  type='button' onClick={() => dispatch(setStatusLogin(false))}>Iniciar sesión</button>
+            <button type='button' onClick={() => dispatch(setStatusLogin(false))}>Iniciar sesión</button>
           </div>
 
         </div>

@@ -75,12 +75,12 @@ const APIs = {
     const path = customPath || 'products/create';
     return ConfigurationAPIs.post(path, data);
   },
-
-  getProducts: async (customPath?: string) => {
-    const path = customPath || `products/get`;
+  getProducts: async (code: string, name: string, customPath?: string) => {
+    const path = customPath || `products/get/${code || '_'}/${name || '_'}`;
+    console.log('URL solicitada:', path);
     return ConfigurationAPIs.get(path);
   },
-
+  
 
 
 

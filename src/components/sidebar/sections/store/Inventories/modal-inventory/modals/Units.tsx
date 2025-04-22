@@ -11,8 +11,8 @@ const Units: React.FC = () => {
   const dispatch = useDispatch();
   const modalState = useSelector((state: any) => state.inventory.modal);
   const units = useSelector((state: any) => state.inventory.units);
-  
-   const select = useSelector((store: any) => store.select);
+
+  const select = useSelector((store: any) => store.select);
 
   console.log(select)
 
@@ -47,8 +47,16 @@ const Units: React.FC = () => {
     let data = {
       name: select.selectedItems.units.name
     }
-     dispatch(setUnits([...units, data]));
+    dispatch(setUnits([...units, data]));
   }
+
+
+  const deleteUnits = (_: any, i: number) => {
+    let filter = units.filter((_: any, index: any) => index !== i)
+    console.log(filter)
+    dispatch(setUnits(filter))
+  }
+
 
 
 
@@ -64,7 +72,7 @@ const Units: React.FC = () => {
         <div className='units_modal-product'>
           <div className='row__one'>
             <div>
-              <Select dataSelects={selectUnits} instanceId="units" nameSelect="Unidades"/>
+              <Select dataSelects={selectUnits} instanceId="units" nameSelect="Unidades" />
             </div>
             <div>
               <label className='label__general'>Valor</label>
@@ -75,74 +83,78 @@ const Units: React.FC = () => {
             </div>
           </div>
           <div className='table_units_modal-products' >
-              <div>
-                {units ? (
-                  <div className='table__numbers'>
-                    <p className='text'>Total de almacenes</p>
-                    <div className='quantities_tables'>{units.length}</div>
-                  </div>
-                ) : (
-                  <p className='text'>No hay empresas</p>
-                )}
-              </div>
-              <div className='table__head'>
-                <div className='thead'>
-                  <div className='th '>
-                    <p className=''>Nombre</p>
-                  </div>
-                  <div className='th movil'>
-                    <p className=''>Empresa</p>
-                  </div>
-                  <div className='th movil'>
-                    <p className=''>Sucursal</p>
-                  </div>
-                  <div className='th movil'>
-                    <p className=''>Estado</p>
-                  </div>
-                  <div className='th'>
+            <div>
+              {units ? (
+                <div className='table__numbers'>
+                  <p className='text'>Total de almacenes</p>
+                  <div className='quantities_tables'>{units.length}</div>
+                </div>
+              ) : (
+                <p className='text'>No hay empresas</p>
+              )}
+            </div>
+            <div className='table__head'>
+              <div className='thead'>
+                <div className='th '>
+                  <p className=''>Nombre</p>
+                </div>
+                <div className='th movil'>
+                  <p className=''>Empresa</p>
+                </div>
+                <div className='th movil'>
+                  <p className=''>Sucursal</p>
+                </div>
+                <div className='th movil'>
+                  <p className=''>Estado</p>
+                </div>
+                <div className='th'>
 
-                  </div>
                 </div>
               </div>
-              {units?.length > 0 ? (
-                <div className='table__body'>
-                  {units?.map((item: any, index: any) => (
-                    <div className='tbody__container' key={index}>
-                      <div className='tbody'>
-                        <div className='td'>
-                          {item.name}
-                        </div>
-                        <div className='td movil'>
-                          {item.companyName}
-                        </div>
-                        <div className='td movil'>
-                          {item.branchName == 0 ? item.branchName : 'N/A'}
-                        </div>
-                        {/* <div className='td movil'>
-                          {item.predetermined == true ?
-                            <div className='activated-status' onClick={() => updateStatus(item)}>
-                              <p>Activo</p>
-                            </div>
-                            :
-                            <div className='idle-status' onClick={() => updateStatus(item)}>
-                              <p>Inactivo</p>
-                            </div>
-                          }
-                        </div>
-                    */}
-                        <div className='td'>
-                          <div className='delete-icon'>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className=" icon icon-tabler icons-tabler-filled icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" /><path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
-                          </div>
+            </div>
+            {units?.length > 0 ? (
+              <div className='table__body'>
+                {units?.map((item: any, index: any) => (
+                  <div className='tbody__container' key={index}>
+                    <div className='tbody-desk'>
+                      <div className='td'>
+                        {item.name}
+                      </div>
+                      <div className='td movil'>
+                        {item.companyName}
+                      </div>
+                      <div className='td movil'>
+                        {item.branchName == 0 ? item.branchName : 'N/A'}
+                      </div>
+                      <div className='td'>
+                        <div className='delete-icon' onClick={() => deleteUnits(item, index)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className=" icon icon-tabler icons-tabler-filled icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" /><path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className='text'>No hay máximos y mínimos que mostrar</p>
-              )}
-            </div>
+                    <div className='tbody-response'>
+                      <div className='td'>
+                        {item.name}
+                      </div>
+                      <div className='td movil'>
+                        {item.companyName}
+                      </div>
+                      <div className='td movil'>
+                        {item.branchName == 0 ? item.branchName : 'N/A'}
+                      </div>
+                      <div className='td'>
+                        <div className='delete-icon' onClick={() => deleteUnits(item, index)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className=" icon icon-tabler icons-tabler-filled icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" /><path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className='text'>No hay máximos y mínimos que mostrar</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

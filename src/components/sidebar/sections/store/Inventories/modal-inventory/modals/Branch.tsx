@@ -57,9 +57,6 @@ const Branch: React.FC = () => {
 
     // Estado inicial para los campos del formulario
     const [fields, setFields] = useState<any>({
-        name: '',
-        symbol: '',
-        predetermined: false,
         companyId: null,
         branchId: null,
         companyName: '',
@@ -106,6 +103,8 @@ const Branch: React.FC = () => {
 
         setFields((prevState: any) => ({
             ...prevState,
+            companyId: company.id,
+            companyName: company.name,
             branchId: response.data[0].id,
             branchName: response.data[0].name,
         }));
@@ -140,14 +139,16 @@ const Branch: React.FC = () => {
     }
 
     const addBranch = () => {
-        let data = {
-            branchId: fields.branchId,
-            branchName: fields.branchName,
-        }
-        dispatch(setBranch([...branchs, data]))
+  
+        dispatch(setBranch([...branchs, fields]))
     }
 
-    console.log(branchs)
+    const deleteBranch = (_: any, i: number) => {
+        let filter = branchs.filter((_: any, index: any) => index !== i)
+        console.log(filter)
+        dispatch(setBranch(filter))
+    
+    }
 
     return (
         <div className={`overlay__branch_modal-product ${modalState === 'branch_modal-product' ? 'active' : ''}`}>
@@ -196,11 +197,11 @@ const Branch: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div className='btn_add'>
                             <button className='btn__general-primary' onClick={addBranch}>Agregar</button>
                         </div>
                     </div>
-                    <div className='table_store_modal-products' >
+                    <div className='table_branch_modal-products' >
                         <div>
                             {branchs ? (
                                 <div className='table__numbers'>
@@ -213,20 +214,13 @@ const Branch: React.FC = () => {
                         </div>
                         <div className='table__head'>
                             <div className='thead'>
-                                <div className='th '>
-                                    <p className=''>Nombre</p>
-                                </div>
                                 <div className='th movil'>
                                     <p className=''>Empresa</p>
                                 </div>
                                 <div className='th movil'>
                                     <p className=''>Sucursal</p>
                                 </div>
-                                <div className='th movil'>
-                                    <p className=''>Estado</p>
-                                </div>
                                 <div className='th'>
-
                                 </div>
                             </div>
                         </div>
@@ -234,19 +228,28 @@ const Branch: React.FC = () => {
                             <div className='table__body'>
                                 {branchs?.map((item: any, index: any) => (
                                     <div className='tbody__container' key={index}>
-                                        <div className='tbody'>
+                                        <div className='tbody-desk'>
                                             <div className='td'>
                                                 {item.companyName}
                                             </div>
                                             <div className='td movil'>
-
                                                 {item.branchName}
                                             </div>
-
-
-
                                             <div className='td'>
-                                                <div className='delete-icon'>
+                                                <div className='delete-icon' onClick={() => deleteBranch(item, index)}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className=" icon icon-tabler icons-tabler-filled icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" /><path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='tbody-response'>
+                                            <div className='td'>
+                                                {item.companyName}
+                                            </div>
+                                            <div className='td movil'>
+                                                {item.branchName}
+                                            </div>
+                                            <div className='td'>
+                                                <div className='delete-icon' onClick={() => deleteBranch(item, index)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className=" icon icon-tabler icons-tabler-filled icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" /><path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
                                                 </div>
                                             </div>

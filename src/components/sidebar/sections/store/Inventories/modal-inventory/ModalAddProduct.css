@@ -16,7 +16,7 @@
     justify-content: center;
     display: flex;
     visibility: hidden;
-    z-index: 1;
+    z-index: 10;
 }
 
 .overlay__inventory_modal.active {
@@ -37,7 +37,9 @@
 .popup__inventory_modal {
     background-color: #17191b;
     border-radius: 5px;
-    width: 90vw;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: 90vw;    
     height: 90vh;
     transition: .3s ease all;
     transform: scale(0.7);
@@ -72,14 +74,36 @@
 
 
 
+.inventory_modal {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    overflow: auto;
+    transition-delay: 0.0s;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
 
-.inventory_modal_container .options {
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        height: 100px;
+    }
+
+    &::-webkit-scrollbar-track {
+        /* Para modificar el background */
+    }
+}
+
+.inventory_modal .options {
     display: flex;
     justify-content: center;
     gap: 20px;
+    padding: 10px;
 }
 
-.inventory_modal_container .options button {
+.inventory_modal .options button {
     padding: 5px;
     outline: 2px solid #e9e9e9;
     background-color: transparent;
@@ -90,16 +114,16 @@
     border: none;
 }
 
-.inventory_modal_container .options button:hover {
+.inventory_modal .options button:hover {
     transform: scale(.9);
 }
-.inventory_modal_container .options button:active {
+.inventory_modal .options button:active {
     transform: scale(1.05);
 }
 
 
 
-.inventory_modal_container .options button.active {
+.inventory_modal .options button.active {
     background-color: var(--primary-color);
     outline: none;
 }
@@ -116,6 +140,28 @@
     padding: 20px;
 }
 
+
+.inventory_modal_container {
+    height: 100%;
+    overflow: auto;
+    transition-delay: 0.0s;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        height: 100px;
+    }
+
+    &::-webkit-scrollbar-track {
+        /* Para modificar el background */
+    }
+
+}
+
+
 .inventory_modal_container>.row__one {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -130,10 +176,18 @@
 
 .inventory_modal_container>.row__one>.row__two {
     width: 200px;
-    height: 200px;
     border-radius: 10px;
-    background-color: #1F319D;
+    
 }
+
+.inventory_modal_container>.row__one>.row__two > .dropzone {
+    width: 200px;
+    height: 200px;
+    background-color: var(--primary-color);
+    color: #fff;
+
+}
+
 
 .inventory_modal_container>.row__one .search {
     display: flex;
@@ -169,6 +223,14 @@
 
 
 
+
+.inventory_modal > .row__three {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+   
+
+}
 
 
 
@@ -272,12 +334,36 @@
 
 
 @media screen and (max-width: 768px) {
+
+
     .administrator__container>.row__one {
         display: block;
     }
 
+    .inventory_modal_container>.row__one {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory_modal_container > .row__one > .row__one {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .administrator__container>.row__one>.input__search>div:nth-child(odd) {
         width: 100%;
+    }
+
+    .inventory_modal_container>.row__one>.row__two {
+        width: 100%;
+        border-radius: 10px;
+        
+    }
+    
+    .inventory_modal_container>.row__one>.row__two > .dropzone {
+        width: 100%;
+        height: 100px;
+        background-color: var(--primary-color);
+        color: #fff;
+    
     }
 
 
@@ -313,7 +399,6 @@
 }
 
 
-@media screen and (max-width: 768px) {}
 
 @media screen and (max-width: 500px) {
     .popup__inventory_modal {

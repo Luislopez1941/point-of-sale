@@ -14,7 +14,6 @@ import astra from '../../assets/astra.svg'
 import './Login.css'
 
 const Login: React.FC = () => {
-
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 

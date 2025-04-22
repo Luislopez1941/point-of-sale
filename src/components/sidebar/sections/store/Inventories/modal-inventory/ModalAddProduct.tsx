@@ -45,11 +45,11 @@ const ModalInventory = () => {
   const createAdministrator = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let data = {
-      codigo: fields.codigo,
+      code: fields.code,
       name: fields.name,
       description: fields.description,
       barcode: fields.barcode,
-      photos: [],
+      photos: fields.photos,
       branch: branch,
       store: store,
       units: units
@@ -75,12 +75,24 @@ const ModalInventory = () => {
     dispatch(setModal(value));
   };
 
-  const [preview, setPreview] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
-    const url = URL.createObjectURL(file);
-    setPreview(url);
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      // Convierte el archivo a base64 y lo guarda en el estado
+      const base64Image = reader.result as string;
+      setFields((prev: any) => ({
+        ...prev,
+        photos: [...prev.photos, base64Image],
+      }));
+    };
+
+    // Lee el archivo como base64
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -91,7 +103,7 @@ const ModalInventory = () => {
     maxFiles: 1
   });
 
-  
+
 
   return (
     <div className={`overlay__inventory_modal ${modalState === 'inventory_modal' ? 'active' : ''}`}>
@@ -103,18 +115,17 @@ const ModalInventory = () => {
           <p className='title__modals'>Venta</p>
         </div>
         <form className='inventory_modal' onSubmit={createAdministrator}>
+          <div className='options'>
+            <button className={`${type == 1 ? 'active' : ''}`} onClick={() => typeChange(1)}>Productos</button>
+            <button className={`${type == 2 ? 'active' : ''}`} onClick={() => typeChange(2)}>Productos</button>
+          </div>
           <div className='inventory_modal_container'>
-            <div className='options'>
-              <button className={`${type == 1 ? 'active' : ''}`} onClick={() => typeChange(1)}>Productos</button>
-              <button className={`${type == 2 ? 'active' : ''}`} onClick={() => typeChange(2)}>Productos</button>
 
-            </div>
             <div className='row__one'>
-
               <div className='row__one'>
                 <div>
                   <label className='label__general'>Codigo</label>
-                  <input className='inputs__general' value={fields.codigo} onChange={(e) => setFields({ ...fields, codigo: e.target.value })} placeholder='Buscar' type="text" name="" id="" />
+                  <input className='inputs__general' value={fields.code} onChange={(e) => setFields({ ...fields, code: e.target.value })} placeholder='Buscar' type="text" name="" id="" />
                 </div>
                 <div>
                   <label className='label__general'>Nombre del producto</label>
@@ -167,11 +178,19 @@ const ModalInventory = () => {
                   )}
                 </div>
 
-                {preview && (
-                  <div style={{ marginTop: '20px' }}>
-                    <img src={preview} alt="Vista previa" style={{ maxWidth: '100%', borderRadius: '10px' }} />
+                {fields.photos && fields.photos.length > 0 && (
+                  <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    {fields.photos.map((photo: string, index: number) => (
+                      <img
+                        key={index}
+                        src={photo}
+                        alt={`Vista previa ${index}`}
+                        style={{ maxWidth: '150px', borderRadius: '10px' }}
+                      />
+                    ))}
                   </div>
                 )}
+
               </div>
             </div>
             <div className='row__two'>
@@ -186,8 +205,8 @@ const ModalInventory = () => {
               </div>
             </div>
           </div>
-          <div>
-            <button >Crear producto</button>
+          <div className='row__three'>
+            <button className='btn__general-primary'>Crear producto</button>
           </div>
         </form>
         <Branch />

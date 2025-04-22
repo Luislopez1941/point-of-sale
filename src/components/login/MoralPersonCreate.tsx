@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { setStatusCreate } from '../../redux/state/login/Login'; // Importar la acción
 import { setStatusLogin } from '../../redux/state/login/Login'; // Importar la acción
 import APIs from '../../services/APIs';
+import { Toaster, toast } from 'sonner'
+
 
 const MoralPersonCreate: React.FC = () => {
 
@@ -33,12 +35,20 @@ const MoralPersonCreate: React.FC = () => {
     }
 
     const create = async () => {
-
         try {
-            let response = await APIs.cresteUser(fields)
-            console.log(response)
-        } catch (error) {
+            let response: any = await APIs.cresteUser(fields)
+            if(response.status == 'warning') {
+               return toast.warning(response.message)
+            }
+            if(response.status == 'success') {
+                toast.success(response.message)
+                dispatch(setStatusLogin(false));
+                return
+             }
 
+        
+        } catch (error) {
+            toast.success('Error al crear la cuenta')
         }
     }
 

@@ -1,0 +1,19 @@
+.options__menu {}
+
+.options__menu_container {
+    padding: 20px;
+}
+
+.options__menu_container .row__one {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.options__menu_container>.row__one>.item {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #1f2124;
+    border-radius: 5px;
+}

@@ -19,20 +19,6 @@
     
 }
 
-
-.dashboard {
-    background: var(--sidebar-primary-hover);
-}
-
-.dashboard svg {
-    fill: #596bef;
-    width: 1.;
-    height: 1.75rem;
-    min-width: 1.75rem;
-}
-
-
-
 .sidebar.collapsed {
     width: 70px;
     align-items: center;
@@ -148,6 +134,7 @@
     overflow: auto;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
+    height: 100%;
     
 }
 
@@ -180,7 +167,7 @@
 }
 
 .sidebar.collapsed .menu_sidebar {
-    overflow: hidden;
+    overflow: auto;
 }
 
 
@@ -462,11 +449,12 @@
 
 
 
+
 @media (max-width: 768px) {
-    /* .sidebar.collapsed {
-        width: 70px;
-        align-items: center;
-       transition: width 100ms ease-in;
-    } */
+    .sidebar {
+        display: none;
+
+    }
+    
     
 }

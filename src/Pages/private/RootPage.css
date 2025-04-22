@@ -1,11 +1,18 @@
 .root-page {
     display: flex;
+    height: 100vh;
 }
 
 .container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
     width: 100%;
 }
 
 .main {
-
+    display: grid;
+    overflow: auto;
+    height: 100%;
+    
 }
