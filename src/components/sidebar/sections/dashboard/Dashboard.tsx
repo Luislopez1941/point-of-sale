@@ -1,5 +1,5 @@
 import type React from "react"
-import "./dashboard.css"
+import "./Dashboard.css"
 import {
     AreaChart,
     Area,
