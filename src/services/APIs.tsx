@@ -80,7 +80,22 @@ const APIs = {
     console.log('URL solicitada:', path);
     return ConfigurationAPIs.get(path);
   },
-  
+
+
+  ///////////////////////////////////ENTRADAS////////////////////////////////////////////////////
+
+  cresteTickets: async (data: any, customPath?: string) => {
+    const path = customPath || 'tickets/create';
+    return ConfigurationAPIs.post(path, data);
+  },
+
+  getTickets: async (data: any, customPath?: string) => {
+    const path = customPath || `tickets/get?companyId=${data.companyId}&branchId=${data.branchId}`;
+    return ConfigurationAPIs.get(path);
+  },
+
+
+
 
 
 

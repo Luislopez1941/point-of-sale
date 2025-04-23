@@ -35,7 +35,7 @@ const ModalCompanies = () => {
     businessName: '',
     email: '',
     type: 'NATURAL_PERSON',
-    id: userState.id
+    user_id: userState.id
     // token: token
   });
 

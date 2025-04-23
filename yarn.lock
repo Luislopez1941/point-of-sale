@@ -1299,6 +1299,11 @@ flat-cache@^4.0.0:
     flatted "^3.2.9"
     keyv "^4.5.4"
 
+flatpickr@^4.6.13:
+  version "4.6.13"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
+  integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
+
 flatted@^3.2.9:
   version "3.3.3"
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.3.3.tgz"
@@ -1734,6 +1739,13 @@ react-dropzone@^14.3.8:
     attr-accept "^2.2.4"
     file-selector "^2.1.0"
     prop-types "^15.8.1"
+
+react-flatpickr@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-4.0.8.tgz#e3ec2369fd050b6f6330750f22881f0d9bc63422"
+  integrity sha512-RF/NHf46SfoMnKVAapQFV0gLzFa4KwBpObbD4SmkpVLMIAtAw0BPcxAXdss0a5cxukEGaEfIzbg9USOoS4J8xg==
+  dependencies:
+    flatpickr "^4.6.13"
 
 react-hot-toast@^2.5.2:
   version "2.5.2"

@@ -6,14 +6,19 @@ export const PublicRoutes = {
     PRIVATE: 'auth',
     DASHBOARD: 'Dashboard',
     WEBPAGE: 'webpage',
+
+    /////////////////MENU RESPONSE//////////////////////////
+    MENUSTORE: 'menu-store',
+
    
 
     SALES: 'sales',
     SALES_SHEET: 'sales-sheet',
 
-
+    ///////////////////////////ALMACEN///////////////////////////////
     STORE: 'store',
     INVENTORY: 'inventory',
+    TICKETS: 'tickets',
 
     CONFIGURATIONS: 'configurations',
     COMPANIES: 'companies',

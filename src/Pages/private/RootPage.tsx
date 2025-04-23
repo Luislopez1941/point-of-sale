@@ -9,6 +9,7 @@ import Menu from '../../components/sidebar/Menu';
 import Dashboard from '../../components/sidebar/sections/dashboard/Dashboard';
 import OptionsMenu from '../../components/sidebar/OptionsMenu';
 import Income from '../../components/sidebar/sections/income/Income';
+import Store from '../../components/sidebar/options-menu/Store';
 
 import { PrivateRoutes } from '../../models/routes';
 import Header from '../../components/header/Header';
@@ -30,6 +31,8 @@ const RootPage: React.FC = () => {
             <Route path={`${PrivateRoutes.INCOME}/*`} element={<Income />} />
             <Route path={`/options/*`} element={<OptionsMenu />} />
             <Route path={`/`} element={<Dashboard />} />
+
+            <Route path={PrivateRoutes.MENUSTORE} element={<Store />} />
           </Routes>
         </main>
       </div>

@@ -26,25 +26,12 @@ const ModalUnits = () => {
         companies: response.data,
       }));
 
-      let data = {
-        userId: userState.id,
-        companyId: response.data[0].id
-      }
-      let result: any = await APIs.getBranch(data)
-      result.data.unshift({
-        id: 0,
-        name: "Sin sucursal"
-      });
-      setSelectBranch((prevState: any) => ({
-        ...prevState,
-        branch: result.data,
-      }));
+
+
       setFields((prevState: any) => ({
         ...prevState,
-        companyId: response.data[0].id,
-        branchId: result.data[0].id,
-        companyName: response.data[0].name,
-        branchName: result.data[0].name,
+        companyId: response?.data[0]?.id,
+        companyName: response?.data[0]?.name,
       }));
 
     } catch (error) {
@@ -156,63 +143,14 @@ const [fields, setFields] = useState<any>({
     }));
   }
 
-  const handleCompanyChange = async (company: any) => {
+  const handleCompanyChange = async (_: any) => {
     setSelectCompany((prevState: any) => ({
       ...prevState,
       selectCompany: !prevState.selectCompany,
     }));
-    setSelectBranch((prevState: any) => ({
-      ...prevState,
-      companyId: company.id,
-      companyName: company.name,
-
-    }));
-
-    let data = {
-      userId: userState.id,
-      companyId: company.id
-    }
-    let response: any = await APIs.getBranch(data)
-    response.data.unshift({
-      id: 0,
-      name: "Sin sucursal"
-    });
-    setSelectBranch((prevState: any) => ({
-      ...prevState,
-      branch: response.data, // Close the dropdown on selection
-    }));
-
-    setFields((prevState: any) => ({
-      ...prevState,
-      branchId: response.data[0].id,
-      branchName: response.data[0].name,
-    }));
   }
 
-  const [selectBranch, setSelectBranch] = useState<any>({
-    selectBranch: false,
-    branch: []
-  })
-
-  const openSelectBranch = () => {
-    setSelectBranch((prevState: any) => ({
-      ...prevState,
-      selectBranch: !prevState.selectBranch, // Close the dropdown on selection
-    }));
-  }
-
-  const handleBranchChange = (branch: any) => {
-    setSelectBranch((prevState: any) => ({
-      ...prevState,
-      selectBranch: !prevState.selectBranch
-    }));
-
-    setFields((prevState: any) => ({
-      ...prevState,
-      branchId: branch.id,
-      branchName: branch.name,
-    }));
-  }
+  
 
 
   return (
@@ -247,26 +185,7 @@ const [fields, setFields] = useState<any>({
                   </div>
                 </div>
               </div>
-              <div>
-                <div className='select__container'>
-                  <label className='label__general'>Sucursal</label>
-                  <div className='select-btn__general'>
-                    <div className={`select-btn ${selectBranch.selectBranch ? 'active' : ''}`} onClick={openSelectBranch}>
-                      <p>{fields.branchId !== null ? selectBranch.branch.find((s: { id: number }) => s.id === fields.branchId)?.name : 'selecciona'}</p>
-                      <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
-                    </div>
-                    <div className={`content ${selectBranch.selectBranch ? 'active' : ''}`}>
-                      <ul className={`options ${selectBranch.selectBranch ? 'active' : ''}`} style={{ opacity: selectBranch.selectBranch ? '1' : '0' }}>
-                        {selectBranch?.branch?.map((branch: any) => (
-                          <li key={branch.id} onClick={() => handleBranchChange(branch)}>
-                            {branch.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
             <div className='row__two'>
               <div>

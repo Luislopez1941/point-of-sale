@@ -11,23 +11,31 @@ const Units: React.FC = () => {
   const dispatch = useDispatch();
   const modalState = useSelector((state: any) => state.inventory.modal);
   const units = useSelector((state: any) => state.inventory.units);
+  const userState = useSelector((store: any) => store.user);
+  console.log(userState)
 
   const select = useSelector((store: any) => store.select);
 
-  console.log(select)
+
+
 
   const [selectUnits, setSelectUnits] = useState<any>([])
   const fetch = async () => {
-    let data = {
-      companyId: 0,
-      branchId: null
-    }
+  
     try {
-      let response: any = await APIs.getUnits(data)
+      let response: any = await APIs.getCompanies(userState.id)
+      setSelectCompany((prevState: any) => ({
+        ...prevState,
+        companies: response.data,
+      }));
+      let data = {
+        companyId: response.data[0].id
+      }
+      let result: any = await APIs.getUnits(data)
 
       setSelectUnits({
         selectName: "Unidades",
-        dataSelect: response.data,
+        dataSelect: result.data,
         options: 'name',
       })
     } catch (error) {
@@ -44,10 +52,8 @@ const Units: React.FC = () => {
   };
 
   const addUnit = () => {
-    let data = {
-      name: select.selectedItems.units.name
-    }
-    dispatch(setUnits([...units, data]));
+ 
+    dispatch(setUnits([...units, select.selectedItems.units]));
   }
 
 
@@ -57,6 +63,41 @@ const Units: React.FC = () => {
     dispatch(setUnits(filter))
   }
 
+  
+    const [selectCompany, setSelectCompany] = useState<any>({
+      selectCompany: false,
+      selectedCompany: null,
+      companies: []
+    })
+  
+    const openSelectCompany = () => {
+      setSelectCompany((prevState: any) => ({
+        ...prevState,
+        selectCompany: !prevState.selectCompany, // Close the dropdown on selection
+      }));
+    }
+  
+    const handleCompanyChange = async (company: any) => {
+      setSelectCompany((prevState: any) => ({
+        ...prevState,
+        selectCompany: !prevState.selectCompany,
+        selectedCompany: company.id
+      }));
+
+      let data = {
+        companyId: company.id
+      }
+      let result: any = await APIs.getUnits(data)
+
+      setSelectUnits({
+        selectName: "Unidades",
+        dataSelect: result.data,
+        options: 'name',
+      })
+    }
+  
+    
+  
 
 
 
@@ -71,6 +112,24 @@ const Units: React.FC = () => {
         </div>
         <div className='units_modal-product'>
           <div className='row__one'>
+            <div className='select__container'>
+              <label className='label__general'>Empresa</label>
+              <div className='select-btn__general'>
+                <div className={`select-btn ${selectCompany.selectCompany ? 'active' : ''}`} onClick={openSelectCompany}>
+                  <p>{selectCompany.selectedCompany !== null ? selectCompany.companies.find((s: { id: number }) => s.id === selectCompany.selectedCompany)?.name : 'selecciona'}</p>
+                  <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+                </div>
+                <div className={`content ${selectCompany.selectCompany ? 'active' : ''}`}>
+                  <ul className={`options ${selectCompany.selectCompany ? 'active' : ''}`} style={{ opacity: selectCompany.selectCompany ? '1' : '0' }}>
+                    {selectCompany?.companies?.map((company: any) => (
+                      <li key={company.id} onClick={() => handleCompanyChange(company)}>
+                        {company.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div>
               <Select dataSelects={selectUnits} instanceId="units" nameSelect="Unidades" />
             </div>

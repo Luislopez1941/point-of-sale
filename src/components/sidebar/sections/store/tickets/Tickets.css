@@ -1,0 +1,33 @@
+.tickets__container {
+    padding: 20px;
+}
+
+.tickets__container>.row__one {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr) repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tickets__container > .row__two {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .tickets__container>.row__one {
+        grid-template-columns: repeat(2, 2fr) repeat(2, 1fr);
+    }
+
+
+}
+
+@media screen and (max-width: 500px) {
+
+    .tickets__container>.row__one {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+}

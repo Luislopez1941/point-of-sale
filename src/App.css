@@ -22,6 +22,8 @@
 --first-body-table-color: #17191b;
 --second-body-table-color: #222222;
 --hover-body-table-color: #5869e963;
+
+--text-color: #fff;
 }
 
 body {
@@ -493,6 +495,37 @@ color: #f5f6f7;
   margin-top: 10px;
 }
 
+
+
+
+
+
+.input-date input {
+	height: 40px;
+	width: 100%;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px 5px 5px 5px;
+	background-color: #1f2124;
+	color: var(--text-color);
+  margin-top: 10px;
+	
+}
+
+
+
+
+
+.traditional__selector {
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 3px;
+  background-color: var(--input-color);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+}
 
 
 
