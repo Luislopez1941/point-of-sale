@@ -1,22 +1,17 @@
-.options__menu {}
-
-.options__menu_container {
-    padding: 20px;
-}
-
-.options__menu_container .row__one {
+.options__menu-catalogo {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    height: min-content;
+    padding: 20px;
 }
 
-
-
-.options__menu_container > .row__one > .item a {
+.options__menu-catalogo .item a {
     display: block;
     text-align: center;
     padding: 10px;
     background-color: #1f2124;
     border-radius: 5px;
     color: #fff;
+    height: min-content;
 }

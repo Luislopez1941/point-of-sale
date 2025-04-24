@@ -9,7 +9,11 @@ import Menu from '../../components/sidebar/Menu';
 import Dashboard from '../../components/sidebar/sections/dashboard/Dashboard';
 import OptionsMenu from '../../components/sidebar/OptionsMenu';
 import Income from '../../components/sidebar/sections/income/Income';
+import Sales from '../../components/sidebar/options-menu/Sales';
+import Shopping from '../../components/sidebar/options-menu/Shopping';
 import Store from '../../components/sidebar/options-menu/Store';
+import Settings from '../../components/sidebar/options-menu/Settings';
+import Catalogo from '../../components/sidebar/options-menu/Catalogo';
 
 import { PrivateRoutes } from '../../models/routes';
 import Header from '../../components/header/Header';
@@ -32,7 +36,13 @@ const RootPage: React.FC = () => {
             <Route path={`/options/*`} element={<OptionsMenu />} />
             <Route path={`/`} element={<Dashboard />} />
 
+            <Route path={PrivateRoutes.MENUSALES} element={<Sales />} />
+            <Route path={PrivateRoutes.MENUSHOPPING} element={<Shopping />} />
             <Route path={PrivateRoutes.MENUSTORE} element={<Store />} />
+            <Route path={PrivateRoutes.MENUSETTINGS} element={<Settings />} />
+            <Route path={PrivateRoutes.MENUCATALOGOS} element={<Catalogo />} />
+            <Route path={PrivateRoutes.MENUSETTINGS} element={<Settings />} />
+            
           </Routes>
         </main>
       </div>

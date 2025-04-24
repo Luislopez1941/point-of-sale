@@ -1,5 +1,5 @@
 import React from 'react'
-import './Store.css'
+import './styles/Store.css'
 import { Link } from 'react-router-dom'
 import { PrivateRoutes } from '../../../models/routes'
 
@@ -17,7 +17,7 @@ const Store: React.FC = () => {
                 </Link>
             </div>
             <div className='item'>
-                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.MENUSTORE}`} title="Payments" className="tooltip">
+                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.TICKETS}`} title="Payments" className="tooltip">
                     <p>Entradas</p>
                 </Link>
             </div>

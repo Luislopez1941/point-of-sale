@@ -1,44 +1,53 @@
 export const PublicRoutes = {
-    LOGIN: 'login'
-  };
-  
-  export const PrivateRoutes = {
-    PRIVATE: 'auth',
-    DASHBOARD: 'Dashboard',
-    WEBPAGE: 'webpage',
+  LOGIN: 'login'
+};
 
-    /////////////////MENU RESPONSE//////////////////////////
-    MENUSTORE: 'menu-store',
+export const PrivateRoutes = {
+  PRIVATE: 'auth',
+  DASHBOARD: 'Dashboard',
+  WEBPAGE: 'webpage',
 
-   
-
-    SALES: 'sales',
-    SALES_SHEET: 'sales-sheet',
-
-    ///////////////////////////ALMACEN///////////////////////////////
-    STORE: 'store',
-    INVENTORY: 'inventory',
-    TICKETS: 'tickets',
-
-    CONFIGURATIONS: 'configurations',
-    COMPANIES: 'companies',
-    BRANCH_OFFICES: 'branch-offices',
-    ROLES: 'roles',
+  /////////////////MENU RESPONSE//////////////////////////
+  MENUSTORE: 'menu-store',
+  MENUSETTINGS: 'menu-settings',
+  MENUCATALOGOS: 'menu-catalogo',
+  MENUSALES: 'menu-sales',
+  MENUSHOPPING: 'menu-shopping',
 
 
-    SHOPPING: 'shopping',
-    PURCHASEORDERS: 'purchaseorders',
-    REQUISITION: 'requisitions',
+  ///////////////////////////SALES///////////////////////////////
+  SALES: 'sales',
+  SALES_SHEET: 'sales-sheet',
+  QUOTATION: 'quotation',
+  SALESORDER: 'salesorder',
+
+  ///////////////////////////SHOPPING///////////////////////////////
+  SHOPPING: 'shopping',
+  PURCHASEORDERS: 'purchaseorders',
+  REQUISITION: 'requisitions',
 
 
 
-    CATALOGOS: 'catalogos',
-    CATEGORIES: 'categories',
-    UNITS: 'units',
+  ///////////////////////////ALMACEN///////////////////////////////
+  STORE: 'store',
+  INVENTORY: 'inventory',
+  TICKETS: 'tickets',
 
-    INCOME: 'income',
+  ///////////////////////////CONFIGURACIONES///////////////////////////////
+  CONFIGURATIONS: 'configurations',
+  COMPANIES: 'companies',
+  BRANCH_OFFICES: 'branch-offices',
+  ROLES: 'roles',
+  SERIES: 'series',
 
 
-    PRODUCTS: 'products'
-  };
-  
+
+  CATALOGOS: 'catalogos',
+  CATEGORIES: 'categories',
+  UNITS: 'units',
+
+  INCOME: 'income',
+
+
+  PRODUCTS: 'products'
+};

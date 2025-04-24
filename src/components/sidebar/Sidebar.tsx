@@ -64,10 +64,12 @@ const Sidebar: React.FC = () => {
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SALES}/${PrivateRoutes.SALES_SHEET}`} title="Ventas" className="tooltip">
                                     <span className="link hide">Ficha de venta</span>
                                 </Link>
-                                {/* <Link to={PrivateRoutes.ADMINISTRATOR} title="Payments" className="tooltip">
-                                    <span className="link hide">Descuentos y promociones</span>
-                                </Link> */}
-
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SALES}/${PrivateRoutes.SALES_SHEET}`} title="Ventas" className="tooltip">
+                                    <span className="link hide">Cotización</span>
+                                </Link>
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SALES}/${PrivateRoutes.SALES_SHEET}`} title="Ventas" className="tooltip">
+                                    <span className="link hide">Orden de venta</span>
+                                </Link>
                             </div>
                         </div>
 
@@ -236,10 +238,10 @@ const Sidebar: React.FC = () => {
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.BRANCH_OFFICES}`} title="Sucursales" className="tooltip">
                                     <span className="link hide">Sucursales</span>
                                 </Link>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CATALOGOS}/${PrivateRoutes.UNITS}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.SERIES}`} title="Payments" className="tooltip">
                                     <span className="link hide">Series</span>
                                 </Link>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CATALOGOS}/${PrivateRoutes.UNITS}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.UNITS}`} title="Payments" className="tooltip">
                                     <span className="link hide">Áreas</span>
                                 </Link>
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.CATEGORIES}`} title="Usuarios" className="tooltip">

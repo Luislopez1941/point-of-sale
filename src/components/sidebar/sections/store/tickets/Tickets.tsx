@@ -25,10 +25,6 @@ const Tickets: React.FC = () => {
 
   const fetch = async () => {
     try {
-
-     
-
-   
       let response: any = await APIs.getCompanies(userState.id)
       let dataG = {
         companyId: response.data[0].id,
