@@ -5,6 +5,7 @@ import RouteSales from '../../routes/sections/sales/RouteSales';
 import RouteStore from '../../routes/sections/store/RouteStore';
 import RoutesConfigurations from '../../routes/sections/configurations/RoutesConfigurations';
 import RoutescCatalogos from '../../routes/sections/catalogos/RoutescCatalogos';
+import RoutesShopping from '../../routes/sections/shopping/RoutesShopping';
 import Menu from '../../components/sidebar/Menu';
 import Dashboard from '../../components/sidebar/sections/dashboard/Dashboard';
 import OptionsMenu from '../../components/sidebar/OptionsMenu';
@@ -29,6 +30,7 @@ const RootPage: React.FC = () => {
         <main className='main'>
           <Routes>
             <Route path={`${PrivateRoutes.SALES}/*`} element={<RouteSales />} />
+            <Route path={`${PrivateRoutes.SHOPPING}/*`} element={<RoutesShopping />} />
             <Route path={`${PrivateRoutes.STORE}/*`} element={<RouteStore />} />
             <Route path={`${PrivateRoutes.CATALOGOS}/*`} element={<RoutescCatalogos />} />
             <Route path={`${PrivateRoutes.CONFIGURATIONS}/*`} element={<RoutesConfigurations />} />

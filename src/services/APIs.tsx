@@ -42,6 +42,35 @@ const APIs = {
     return ConfigurationAPIs.get(path);
   },
 
+    ///////////////////////////////////SERIES////////////////////////////////////////////////////
+
+    createSeries: async (data: any, customPath?: string) => {
+      const path = customPath || 'series/create';
+      return ConfigurationAPIs.post(path, data);
+    },
+  
+    getSeries: async (data: any, customPath?: string) => {
+      // const path = customPath || `tickets/get?companyId=${data.companyId}&branchId=${data.branchId}`;
+      const path = customPath || `series/get`;
+      return ConfigurationAPIs.get(path);
+    },
+
+
+       ///////////////////////////////////AREAS////////////////////////////////////////////////////
+
+       createAreas: async (data: any, customPath?: string) => {
+        const path = customPath || 'areas/create';
+        return ConfigurationAPIs.post(path, data);
+      },
+    
+      getAreas: async (data: any, customPath?: string) => {
+        // const path = customPath || `tickets/get?companyId=${data.companyId}&branchId=${data.branchId}`;
+        const path = customPath || `areas/get`;
+        return ConfigurationAPIs.get(path);
+      },
+    
+  
+
   ///////////////////////////////////ALMACEN////////////////////////////////////////////////////
 
   cresteWarehouses: async (data: any, customPath?: string) => {

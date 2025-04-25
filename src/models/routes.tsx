@@ -32,6 +32,8 @@ export const PrivateRoutes = {
   STORE: 'store',
   INVENTORY: 'inventory',
   TICKETS: 'tickets',
+  DEPARTURES: 'departures',
+  ORDERS: 'orders',
 
   ///////////////////////////CONFIGURACIONES///////////////////////////////
   CONFIGURATIONS: 'configurations',
@@ -39,6 +41,7 @@ export const PrivateRoutes = {
   BRANCH_OFFICES: 'branch-offices',
   ROLES: 'roles',
   SERIES: 'series',
+  AREAS: 'areas',
 
 
 

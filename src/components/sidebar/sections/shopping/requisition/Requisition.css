@@ -1,14 +1,14 @@
-.tickets__container {
+.requisition__container {
     padding: 20px;
 }
 
-.tickets__container>.row__one {
+.requisition__container>.row__one {
     display: grid;
     grid-template-columns: repeat(2, 2fr) repeat(2, 1fr);
     gap: 20px;
 }
 
-.tickets__container > .row__two {
+.requisition__container > .row__two {
     display: flex;
     justify-content: end;
     margin-top: 20px;
@@ -16,8 +16,8 @@
 
 @media screen and (max-width: 768px) {
 
-    .tickets__container>.row__one {
-        grid-template-columns: repeat(2, 2fr) repeat(2, 1fr);
+    .requisition__container > .row__one {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 
@@ -25,7 +25,7 @@
 
 @media screen and (max-width: 500px) {
 
-    .tickets__container>.row__one {
+    .requisition__container > .row__one {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -40,7 +40,7 @@
 
 
 
-.table__tickets {
+.table__requisition {
     margin-top: 20px;
     border-radius: 10px;
     text-align: justify;
@@ -51,7 +51,7 @@
 }
 
 
-.table__tickets .table__head {
+.table__requisition .table__head {
     display: flex;
     width: 100%;
     background-color: #1f2124;
@@ -59,7 +59,7 @@
     border-radius: 5px 5px 0 0;
 }
 
-.table__tickets .table__head .thead {
+.table__requisition .table__head .thead {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(5, 1fr) 50px 50px;
@@ -67,7 +67,7 @@
     font-weight: 600;
 }
 
-.table__tickets .table__body {
+.table__requisition .table__body {
     height: 100%;
     overflow: auto;
     transition-delay: 0.0s;
@@ -89,32 +89,32 @@
 }
 
 
-.table__tickets .tbody__container .tbody-desk {
+.table__requisition .tbody__container .tbody-desk {
     border-bottom: 2px solid #1f2124;
 }
 
-.table__tickets .tbody__container .tbody-response {
+.table__requisition .tbody__container .tbody-response {
     border-bottom: 2px solid #1f2124;
 }
 
-.table__tickets .tbody__container .tbody-desk {
+.table__requisition .tbody__container .tbody-desk {
     display: grid;
     grid-template-columns: repeat(5, 1fr) 50px 50px;
     padding: 15px;
 }
 
 
-.table__tickets .table__body .tbody-desk .td {
+.table__requisition .table__body .tbody-desk .td {
     display: flex;
 }
 
-.table__tickets .table__body .tbody-desk:hover {
+.table__requisition .table__body .tbody-desk:hover {
     background-color: var(--secundary-color);
     color: #fff;
 }
 
 
-.table__tickets .table__body .tbody-response {
+.table__requisition .table__body .tbody-response {
     display: none;
     padding: 15px;
     border: 2px solid #1f2124;
@@ -131,18 +131,18 @@
  
 
  
-    .table__tickets .table__body {
+    .table__requisition .table__body {
         border: none;
        
     }
 
-    .table__tickets .table__head {
+    .table__requisition .table__head {
         display: none;
     }
     
 
 
-    .table__tickets .table__body .tbody-response {
+    .table__requisition .table__body .tbody-response {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -150,7 +150,7 @@
     }
     
     
-    .table__tickets .table__body .tbody-desk {
+    .table__requisition .table__body .tbody-desk {
         display: none;
     }
 

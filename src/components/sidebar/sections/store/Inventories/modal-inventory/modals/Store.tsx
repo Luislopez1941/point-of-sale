@@ -11,7 +11,7 @@ const Store: React.FC = () => {
     const modalState = useSelector((state: any) => state.inventory.modal);
     const store = useSelector((state: any) => state.inventory.store);
     const userState = useSelector((store: any) => store.user);
-     const select = useSelector((store: any) => store.select);
+    const select = useSelector((store: any) => store.select);
 
     const handleModalChange = (value: any) => {
         dispatch(setModal(value));

@@ -13,6 +13,9 @@ import storeReducer from './state/store/Store';
 import unitsReducer from './state/catalogos/Units'
 import inventoryReducer from './state/store/Inventory'
 
+import seriesReducer from './state/Configurations/Series'
+import areasReducer from './state/Configurations/Areas'
+
 export interface AppStore {
     user: UserInfo;
     modals: string;
@@ -25,6 +28,8 @@ export interface AppStore {
     store: any;
     units: any;
     inventory: any;
+    series: any;
+    areas: any;
 }
 
 export default configureStore<AppStore>({
@@ -39,6 +44,8 @@ export default configureStore<AppStore>({
         branch: branchReducer,
         store: storeReducer,
         units: unitsReducer,
-        inventory: inventoryReducer
+        inventory: inventoryReducer,
+        series: seriesReducer,
+        areas: areasReducer
     }
 });

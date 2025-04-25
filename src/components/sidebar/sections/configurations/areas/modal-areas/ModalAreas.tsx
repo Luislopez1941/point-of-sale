@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './ModalSeries.css';
+import './ModalAreas.css';
 import { useDispatch, useSelector } from "react-redux";
 import { modal } from '../../../../../../redux/state/modals';
 import APIs from '../../../../../../services/APIs';
-import Select from '../../../../../general/Select';
+import { setAreas } from '../../../../../../redux/state/Configurations/Areas';
 import Swal from 'sweetalert2';
 import { setSeries } from '../../../../../../redux/state/Configurations/Series';
 
 
 
-const ModalSeries: React.FC = () => {
+const ModalAreas: React.FC = () => {
   const modalState = useSelector((state: any) => state.modals);
   const userState = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
@@ -21,22 +21,22 @@ const ModalSeries: React.FC = () => {
 
   const [nameModules] = useState<any>([
     {
-        id: 1,
-        name: 'Requisiscion'
+      id: 1,
+      name: 'Requisiscion'
     },
     {
-        id: 2,
-        name: 'Orden de compra'
+      id: 2,
+      name: 'Orden de compra'
     },
     {
-        id: 3,
-        name: 'Entrada'
+      id: 3,
+      name: 'Entrada'
     },
     {
-        id: 2,
-        name: 'Pedido'
+      id: 2,
+      name: 'Pedido'
     }
-])
+  ])
 
 
   const [tickets, setTickets] = useState<any>([])
@@ -75,7 +75,7 @@ const ModalSeries: React.FC = () => {
       }));
       setSelectCompany((prevState: any) => ({
         ...prevState,
-        companies: result.data,
+        companies: response.data,
       }));
       setFields((prevState: any) => ({
         ...prevState,
@@ -101,7 +101,8 @@ const ModalSeries: React.FC = () => {
     branchId: null,
     companyName: '',
     branchName: '',
-    name: ''
+    name: '',
+    predetermined: false
   })
 
   const [selectCompany, setSelectCompany] = useState<any>({
@@ -177,26 +178,26 @@ const ModalSeries: React.FC = () => {
   }
 
 
-  const createSeries = async () => {
+  const createArea = async () => {
     try {
       let data = {
         companyId: fields.companyId,
         branchId: fields.branchId, // corregido typo de "brnachId"
         name: fields.name,
-        type: select.selectedItems.typeSeries.id,
+        production: fields.predetermined,
       };
-      let response: any = await APIs.createSeries(data);
-      
+      let response: any = await APIs.createAreas(data);
+
       Swal.fire({
         icon: 'success',
         title: 'Serie creada correctamente',
         text: response.message,
         confirmButtonColor: '#3085d6',
       });
-      let result: any = await APIs.getSeries(data)
-      dispatch(setSeries(result.data));
+      let result: any = await APIs.getAreas(data)
+      dispatch(setAreas(result.data));
       dispatch(modal(''));
-  
+
     } catch (error: any) {
       // En caso de error, muestra alerta de error
       Swal.fire({
@@ -208,73 +209,91 @@ const ModalSeries: React.FC = () => {
     }
   };
 
- 
+  const selectPredeterminada = (_: any) => {
+    const exist = selectBranch.branch.filter((x: any) => x.predeterminado_empresa == true)
+    if (exist.length > 0) {
+      Swal.fire('Notificacion', 'Ya existe una empresa predeterminada para este almacen: ' + exist[0].empresa, 'info')
+      return
+    }
+    setFields((prevState: any) => ({
+      ...prevState,
+      predetermined: !fields.predetermined
+    }));
+
+  }
+
+
 
   return (
-    <div className={`overlay__series_modal ${modalState === 'series_modal' ? 'active' : ''}`}>
-      <div className={`popup__series_modal ${modalState === 'series_modal' ? 'active' : ''}`}>
+    <div className={`overlay__areas_modal ${modalState === 'areas_modal' ? 'active' : ''}`}>
+      <div className={`popup__areas_modal ${modalState === 'areas_modal' ? 'active' : ''}`}>
         <div className='header__modal'>
-          <a href="#" className="btn-cerrar-popup__series_modal" onClick={() => handleModalChange('')}>
+          <a href="#" className="btn-cerrar-popup__areas_modal" onClick={() => handleModalChange('')}>
             <svg className='svg__close' xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
           </a>
-          <p className='title__modals'>Crear nueva serie</p>
+          <p className='title__modals'>Crear nueva área</p>
         </div>
-        <div className='series_modal'>
-          <div className='series_modal_container'>
+        <div className='areas_modal'>
+          <div className='areas_modal_container'>
             <div className='row__one'>
-          
-                <div className='select__container'>
-                  <label className='label__general'>Empresa</label>
-                  <div className='select-btn__general'>
-                    <div className={`select-btn ${selectCompany.selectCompany ? 'active' : ''}`} onClick={openSelectCompany}>
-                      <p>{fields.companyId !== null ? selectCompany.companies.find((s: { id: number }) => s.id === fields.companyId)?.name : 'selecciona'}</p>
-                      <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
-                    </div>
-                    <div className={`content ${selectCompany.selectCompany ? 'active' : ''}`}>
-                      <ul className={`options ${selectCompany.selectCompany ? 'active' : ''}`} style={{ opacity: selectCompany.selectCompany ? '1' : '0' }}>
-                        {selectCompany?.companies?.map((company: any) => (
-                          <li key={company.id} onClick={() => handleCompanyChange(company)}>
-                            {company.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+              <div className='select__container'>
+                <label className='label__general'>Empresa</label>
+                <div className='select-btn__general'>
+                  <div className={`select-btn ${selectCompany.selectCompany ? 'active' : ''}`} onClick={openSelectCompany}>
+                    <p>{fields.companyId !== null ? selectCompany.companies.find((s: { id: number }) => s.id === fields.companyId)?.name : 'selecciona'}</p>
+                    <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+                  </div>
+                  <div className={`content ${selectCompany.selectCompany ? 'active' : ''}`}>
+                    <ul className={`options ${selectCompany.selectCompany ? 'active' : ''}`} style={{ opacity: selectCompany.selectCompany ? '1' : '0' }}>
+                      {selectCompany?.companies?.map((company: any) => (
+                        <li key={company.id} onClick={() => handleCompanyChange(company)}>
+                          {company.name}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                <div className='select__container'>
-                  <label className='label__general'>Sucursal</label>
-                  <div className='select-btn__general'>
-                    <div className={`select-btn ${selectBranch.selectBranch ? 'active' : ''}`} onClick={openSelectBranch}>
-                      <p>{fields.branchId !== null ? selectBranch.branch.find((s: { id: number }) => s.id === fields.branchId)?.name : 'selecciona'}</p>
-                      <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
-                    </div>
-                    <div className={`content ${selectBranch.selectBranch ? 'active' : ''}`}>
-                      <ul className={`options ${selectBranch.selectBranch ? 'active' : ''}`} style={{ opacity: selectBranch.selectBranch ? '1' : '0' }}>
-                        {selectBranch?.branch?.map((branch: any) => (
-                          <li key={branch.id} onClick={() => handleBranchChange(branch)}>
-                            {branch.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+              </div>
+              <div className='select__container'>
+                <label className='label__general'>Sucursal</label>
+                <div className='select-btn__general'>
+                  <div className={`select-btn ${selectBranch.selectBranch ? 'active' : ''}`} onClick={openSelectBranch}>
+                    <p>{fields.branchId !== null ? selectBranch.branch.find((s: { id: number }) => s.id === fields.branchId)?.name : 'selecciona'}</p>
+                    <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+                  </div>
+                  <div className={`content ${selectBranch.selectBranch ? 'active' : ''}`}>
+                    <ul className={`options ${selectBranch.selectBranch ? 'active' : ''}`} style={{ opacity: selectBranch.selectBranch ? '1' : '0' }}>
+                      {selectBranch?.branch?.map((branch: any) => (
+                        <li key={branch.id} onClick={() => handleBranchChange(branch)}>
+                          {branch.name}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-            </div>
-            <div className='row__two'>
+              </div>
               <div>
                 <label className='label__general'>Nombre</label>
                 <input className='inputs__general' value={fields.name} onChange={(e) => setFields({ ...fields, name: e.target.value })} placeholder='Nombre' type="text" />
               </div>
-              <div>
-                <Select dataSelects={typeSeries} instanceId="typeSeries" nameSelect="Para" />
-              </div>
               <div className=''>
-              
+                <label className='label__general'>Predeterminado</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    checked={fields.predetermined} // Asignar el valor del estado al atributo 'checked'
+                    onChange={(e) => { selectPredeterminada(e.target.checked); }}
+                  />
+                  <span className="slider"></span>
+                </label>
               </div>
+            </div>
+            <div className='row__two'>
+             
             </div>
             <div className='row__three'>
               <div>
-                <button className='btn__general-primary' onClick={createSeries}>Crear serie</button>
+                <button className='btn__general-primary' onClick={createArea}>Crear área</button>
               </div>
             </div>
 
@@ -286,4 +305,4 @@ const ModalSeries: React.FC = () => {
   );
 };
 
-export default ModalSeries;
+export default ModalAreas;

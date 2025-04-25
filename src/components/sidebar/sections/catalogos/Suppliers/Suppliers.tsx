@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { modal } from '../../../../../redux/state/modals';
-import './Series.css'
-import ModalSeries from './modal-series/ModalSeries';
+import './Areas.css'
 import { setSeries } from '../../../../../redux/state/Configurations/Series';
 import APIs from '../../../../../services/APIs';
+import ModalAreas from './modal-suppliers/ModalSuppliers';
 
 
 
-const Series: React.FC = () => {
+const Areas: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const series = useSelector((state: any) => state.series.series);
+    const areas = useSelector((state: any) => state.areas.areas);
 
-    console.log(' seriesseriesseries', series)
 
     const fetch = async () => {
         let data = {
@@ -28,7 +27,7 @@ const Series: React.FC = () => {
 
         }
     }
-console.log('series', series)
+
     useEffect(() => {
         fetch()
     }, [])
@@ -48,19 +47,19 @@ console.log('series', series)
  
 
     return (
-        <div className='series'>
-            <div className='series__container'>
+        <div className='areas'>
+            <div className='areas__container'>
                 <div className='row__one'>
                     <div>
-                        <button className='btn__general-primary' onClick={() => handleModalChange('series_modal')}>Crear nueva serie</button>
+                        <button className='btn__general-primary' onClick={() => handleModalChange('areas_modal')}>Crear nueva área</button>
                     </div>
                 </div>
-                <div className='table__series' >
+                <div className='table__areas' >
                     <div>
-                        {series ? (
+                        {areas ? (
                             <div className='table__numbers'>
                                 <p className='text'>Total de administradores</p>
-                                <div className='quantities_tables'>{series.length}</div>
+                                <div className='quantities_tables'>{areas.length}</div>
                             </div>
                         ) : (
                             <p className='text'>No hay empresas</p>
@@ -69,31 +68,31 @@ console.log('series', series)
                     <div className='table__head'>
                         <div className='thead'>
                             <div className='th'>
-                                <p className=''>Código</p>
-                            </div>
-                            <div className='th movil'>
                                 <p className=''>Nombre</p>
                             </div>
                             <div className='th movil'>
-                                <p className=''>Status</p>
+                                <p className=''>Empresa</p>
+                            </div>
+                            <div className='th movil'>
+                                <p className=''>Sucursal</p>
                             </div>
                             <div className='th'>
                             </div>
                         </div>
                     </div>
-                    {series?.length > 0 ? (
+                    {areas?.length > 0 ? (
                         <div className='table__body'>
-                            {series?.map((item: any, index: any) => (
+                            {areas?.map((item: any, index: any) => (
                                 <div className='tbody__container' key={index}>
                                     <div className='tbody-desk'>
                                         <div className='td'>
-                                            {item.code}
-                                        </div>
-                                        <div className='td movil'>
                                             {item.name}
                                         </div>
                                         <div className='td movil'>
-                                            {item.status}
+                                            {item.companyName}
+                                        </div>
+                                        <div className='td movil'>
+                                            {item.branchName}
                                         </div>
                                         <div className='td edit'>
                                             <div className='edit-icon'>
@@ -124,10 +123,10 @@ console.log('series', series)
                         <p className='text'>No hay máximos y mínimos que mostrar</p>
                     )}
                 </div>
-                <ModalSeries />
+                <ModalAreas />
             </div>
         </div>
     )
 }
 
-export default Series
+export default Areas

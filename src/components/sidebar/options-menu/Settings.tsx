@@ -23,7 +23,7 @@ const Settings: React.FC = () => {
                 </Link>
             </div>
             <div className='item'>
-                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}`} title="Payments" className="tooltip">
+                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.AREAS}`} title="Payments" className="tooltip">
                     <p>Areas</p>
                 </Link>
             </div>

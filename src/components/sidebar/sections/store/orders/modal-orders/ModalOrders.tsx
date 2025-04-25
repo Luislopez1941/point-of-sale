@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './ModalTickets.css';
+import './ModalOders.css';
 import { useDispatch, useSelector } from "react-redux";
 import { modal } from '../../../../../../redux/state/modals';
 import APIs from '../../../../../../services/APIs';
@@ -14,7 +14,6 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
 
   const fetch = async () => {
     try {
-
       setSelectCompany((prevState: any) => ({
         ...prevState,
         companies: companies,

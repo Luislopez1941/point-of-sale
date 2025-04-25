@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './ModalTickets.css';
+import './ModalRequisition.css';
 import { useDispatch, useSelector } from "react-redux";
 import { modal } from '../../../../../../redux/state/modals';
 import APIs from '../../../../../../services/APIs';
+
 import Swal from 'sweetalert2';
 
-const ModalTickets: React.FC<any> = ({ companies, branch }) => {
+const ModalRequisition: React.FC<any> = ({ companies, branch }) => {
   const userState = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
   const modalState = useSelector((state: any) => state.modals);
@@ -144,7 +145,7 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
     selectType: null,
     selectedType: null,
     selectResult: null,
-    selectedResult: '',
+    selectedResult: {},
     result: [],
     field: ''
   })
@@ -301,19 +302,61 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
   }
 
 
-  console.log('branch', fields)
+  console.log('selectAdd', selectAdd)
+
+  const [selectedOption, setSelectedOption] = useState<any>(0);
+
+  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (value === "normal") {
+      setSelectedOption(0);
+    }
+    else if (value === "diferencial") {
+      setSelectedOption(1);
+    }
+    else {
+
+    }
+  };
+
 
   return (
-    <div className={`overlay__tickets_modal ${modalState === 'tickets_modal' ? 'active' : ''}`}>
-      <div className={`popup__tickets_modal ${modalState === 'tickets_modal' ? 'active' : ''}`}>
-        <div className='header__modal'>
-          <a href="#" className="btn-cerrar-popup__tickets_modal" onClick={() => handleModalChange('')}>
+    <div className={`overlay__requisition_modal ${modalState === 'requisition_modal' ? 'active' : ''}`}>
+      <div className={`popup__requisition_modal ${modalState === 'requisition_modal' ? 'active' : ''}`}>
+      <div className='header__modal'>
+          <a href="#" className="btn-cerrar-popup__requisition_modal" onClick={() => handleModalChange('')}>
             <svg className='svg__close' xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
           </a>
-          <p className='title__modals'>Nueva entrada</p>
+          <p className='title__modals'>Nueva requisicón</p>
         </div>
-        <div className='tickets_modal'>
-          <div className='tickets_modal_container'>
+        <div className='requisition_modal'>
+          <div className='requisition_modal_container'>
+            <div className='checkbox__container_general'>
+              <div className='checkbox__container'>
+                <label className="checkbox__container_general">
+                  <input
+                    className='checkbox'
+                    type="radio"
+                    value="normal"
+                    checked={selectedOption == 0}
+                    onChange={handleOptionChange} />
+                  <span className="checkmark__general"></span>
+                </label>
+                <p className='text'>Normal</p>
+              </div>
+              <div className='checkbox__container'>
+                <label className="checkbox__container_general">
+                  <input
+                    className='checkbox'
+                    type="radio"
+                    value="diferencial"
+                    checked={selectedOption == 1}
+                    onChange={handleOptionChange} />
+                  <span className="checkmark__general"></span>
+                </label>
+                <p className='text'>Diferencial</p>
+              </div>
+            </div>
             <div className='row__one'>
               <div className='select__container'>
                 <label className='label__general'>Empresa</label>
@@ -351,9 +394,27 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-4 comments">
+              <div className='select__container'>
+                <label className='label__general'>Areas</label>
+                <div className='select-btn__general'>
+                  <div className={`select-btn ${selectBranch.selectBranch ? 'active' : ''}`} onClick={openSelectBranch}>
+                    <p>{fields.branchId !== null ? selectBranch.branch.find((s: { id: number }) => s.id === fields.branchId)?.name : 'selecciona'}</p>
+                    <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+                  </div>
+                  <div className={`content ${selectBranch.selectBranch ? 'active' : ''}`}>
+                    <ul className={`options ${selectBranch.selectBranch ? 'active' : ''}`} style={{ opacity: selectBranch.selectBranch ? '1' : '0' }}>
+                      {selectBranch?.branch?.map((branch: any) => (
+                        <li key={branch.id} onClick={() => handleBranchChange(branch)}>
+                          {branch.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="comments">
                 <label className='label__general'>Comentarios</label>
-                <input className={`inputs__general`} type='text' value={fields.field} onChange={(e) => setFields({ ...fields, field: e.target.value })} placeholder='Comentarios' />
+                <textarea className={`inputs__general`} value={fields.comments} onChange={(e) => setFields({ ...fields, comments: e.target.value })} placeholder='Comentarios'></textarea>
               </div>
             </div>
             <div className='row__two'>
@@ -391,7 +452,7 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
                   <label className='label__general'>Resultado</label>
                   <div className='select-btn__general'>
                     <div className={`select-btn ${selectAdd.selectResult ? 'active' : ''}`} onClick={openSelectResult}>
-                      <p>{selectAdd.selectedResult.id !== null ? selectAdd?.result?.find((s: { id: number }) => s.id === selectAdd.selectedResult.id)?.name : 'selecciona'}</p>
+                      <p>{selectAdd.selectedResult.id ? selectAdd?.result?.find((s: { id: number }) => s.id === selectAdd.selectedResult.id)?.name : 'selecciona'}</p>
                       <svg className='chevron__down' xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
                     </div>
                     <div className={`content ${selectAdd.selectResult ? 'active' : ''}`}>
@@ -410,7 +471,7 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
                 </div>
               </div>
             </div>
-            <div className='table__tickets_modal' >
+            <div className='table__requisition_modal' >
               <div>
                 {concepts ? (
                   <div className='table__numbers'>
@@ -542,4 +603,4 @@ const ModalTickets: React.FC<any> = ({ companies, branch }) => {
   );
 };
 
-export default ModalTickets;
+export default ModalRequisition;

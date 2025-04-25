@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import ModalTickets from './modal-tickets/ModalTickets'
+import ModalRequisition from './modal-requisition/ModalRequisition'
 import { useDispatch } from 'react-redux';
 import { modal } from '../../../../../redux/state/modals'
 import APIs from '../../../../../services/APIs';
 import { useSelector } from 'react-redux';
-import './Tickets.css'
+import './Requisition.css'
 import Flatpickr from "react-flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
 import { Spanish } from 'flatpickr/dist/l10n/es.js';
 
-const Tickets: React.FC = () => {
+const Requisition: React.FC = () => {
   const userState = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
 
@@ -166,8 +166,8 @@ const Tickets: React.FC = () => {
 
 
   return (
-    <div className='tickets'>
-      <div className='tickets__container'>
+    <div className='requisition'>
+      <div className='requisition__container'>
         <div className='row__one'>
           <div className='select__container'>
             <label className='label__general'>Empresa</label>
@@ -230,10 +230,10 @@ const Tickets: React.FC = () => {
         </div>
         <div className='row__two'>
           <div>
-            <button className='btn__general-primary' onClick={() => handleModalChange('tickets_modal')}>Nueva entrada</button>
+            <button className='btn__general-primary' onClick={() => handleModalChange('requisition_modal')}>Nueva Requisición</button>
           </div>
         </div>
-        <div className='table__tickets' >
+        <div className='table__requisition' >
           <div>
             {tickets ? (
               <div className='table__numbers'>
@@ -332,10 +332,10 @@ const Tickets: React.FC = () => {
             <p className='text'>No hay máximos y mínimos que mostrar</p>
           )}
         </div>
-        <ModalTickets companies={companies} branch={branch} />
+        <ModalRequisition companies={companies} branch={branch} />
       </div>
     </div>
   )
 }
 
-export default Tickets
+export default Requisition

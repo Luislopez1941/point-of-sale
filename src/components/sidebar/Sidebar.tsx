@@ -84,7 +84,7 @@ const Sidebar: React.FC = () => {
                         </a>
                         <div className={`sub-menu ${activeMenu} ${activeMenu == 'shopping' ? 'active' : ''}`}>
                             <div className='sub-menu-container'>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SHOPPING}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SHOPPING}/${PrivateRoutes.REQUISITION}`} title="Payments" className="tooltip">
                                     <span className="link hide">Requisicion</span>
                                 </Link>
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SHOPPING}`} title="Payments" className="tooltip">
@@ -147,10 +147,10 @@ const Sidebar: React.FC = () => {
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.TICKETS}`} title="Payments" className="tooltip">
                                     <span className="link hide">Entradas</span>
                                 </Link>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.INVENTORY}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.ORDERS}`} title="Payments" className="tooltip">
                                     <span className="link hide">Pedidos</span>
                                 </Link>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.INVENTORY}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.STORE}/${PrivateRoutes.DEPARTURES}`} title="Payments" className="tooltip">
                                     <span className="link hide">Salidas</span>
                                 </Link>
                             </div>
@@ -241,7 +241,7 @@ const Sidebar: React.FC = () => {
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.SERIES}`} title="Payments" className="tooltip">
                                     <span className="link hide">Series</span>
                                 </Link>
-                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.UNITS}`} title="Payments" className="tooltip">
+                                <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.AREAS}`} title="Payments" className="tooltip">
                                     <span className="link hide">Áreas</span>
                                 </Link>
                                 <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.CONFIGURATIONS}/${PrivateRoutes.CATEGORIES}`} title="Usuarios" className="tooltip">

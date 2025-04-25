@@ -50,3 +50,28 @@
     color: #fff;
     border-radius: 50px;
 }
+
+.astra_logo {
+    display: none;
+
+}
+
+
+.astra_logo .logo__wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+
+@media (max-width: 768px) {
+
+    .hero__container {
+        justify-content: space-between;
+    }
+    .astra_logo {
+        display: flex;
+
+    }
+    
+    
+}

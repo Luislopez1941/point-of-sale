@@ -5,7 +5,7 @@
 =================================================*/
 
 
-.overlay__tickets_modal {
+.overlay__requisition_modal {
     background: rgba(0, 0, 0, .3);
     position: fixed;
     top: 0;
@@ -19,7 +19,7 @@
     z-index: 10;
 }
 
-.overlay__tickets_modal.active {
+.overlay__requisition_modal.active {
     visibility: visible;
 }
 
@@ -34,7 +34,7 @@
 }
 
 
-.popup__tickets_modal {
+.popup__requisition_modal {
     background-color: #17191b;
     border-radius: 5px;
     display: grid;
@@ -52,7 +52,7 @@
 }
 
 
-.popup__tickets_modal .btn-cerrar-popup__tickets_modal {
+.popup__requisition_modal .btn-cerrar-popup__requisition_modal {
     font-size: 16px;
     display: block;
     transition: .3s ease all;
@@ -65,7 +65,7 @@
 /* ------------------------- */
 /* ANIMACIONES */
 /* ------------------------- */
-.popup__tickets_modal.active {
+.popup__requisition_modal.active {
     transform: scale(1);
     opacity: 1;
 }
@@ -74,7 +74,7 @@
 
 
 
-.tickets_modal {
+.requisition_modal {
     height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -97,7 +97,7 @@
     }
 }
 
-.tickets_modal_container {
+.requisition_modal_container {
     display: grid;
     padding: 20px;
     gap: 20px;
@@ -119,13 +119,17 @@
     }
 }
 
-.tickets_modal_container .row__one {
+.requisition_modal_container > .row__one {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.tickets_modal_container > .row__two {
+.requisition_modal_container > .row__one > .comments {
+    grid-column: 1 / 4;
+}
+
+.requisition_modal_container > .row__two {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
@@ -134,32 +138,32 @@
     padding: 20px;
 }
 
-.tickets_modal_container .row__two .select__container .select-btn {
+.requisition_modal_container .row__two .select__container .select-btn {
     background-color: #5869e9fd;
     color: #fff;
 }
 
-.tickets_modal_container .row__two .inputs__general {
+.requisition_modal_container .row__two .inputs__general {
     outline: 2px solid #5869e9;
     
 }
 
 
-.tickets_modal_container .row__two > .row__one {
+.requisition_modal_container .row__two > .row__one {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: end;
     gap: 20px;
 }
 
-.tickets_modal_container .row__two > .row__one .row__two {
+.requisition_modal_container .row__two > .row__one .row__two {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: end;
     gap: 20px;
 }
 
-.tickets_modal_container .row__two > .row__two {
+.requisition_modal_container .row__two > .row__two {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: end;
@@ -175,7 +179,7 @@
 
 
 
-.table__tickets_modal {
+.table__requisition_modal {
     margin-top: 20px;
     border-radius: 10px;
     text-align: justify;
@@ -186,7 +190,7 @@
 }
 
 
-.table__tickets_modal .table__head {
+.table__requisition_modal .table__head {
     display: flex;
     width: 100%;
     background-color: #1f2124;
@@ -194,7 +198,7 @@
     border-radius: 5px 5px 0 0;
 }
 
-.table__tickets_modal .table__head .thead {
+.table__requisition_modal .table__head .thead {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(4, 1fr) 50px 50px;
@@ -203,7 +207,7 @@
     font-weight: 600;
 }
 
-.table__tickets_modal .table__body {
+.table__requisition_modal .table__body {
     height: 100%;
     overflow: auto;
     transition-delay: 0.0s;
@@ -224,21 +228,21 @@
     }
 }
 
-.table__tickets_modal .tbody__container  {
+.table__requisition_modal .tbody__container  {
     border-bottom: 2px solid #1f2124;
 }
 
 
-.table__tickets_modal .tbody__container .tbody-desk {
+.table__requisition_modal .tbody__container .tbody-desk {
     border-bottom: 2px solid #1f2124;
 }
 
-.table__tickets_modal .tbody__container .td {
+.table__requisition_modal .tbody__container .td {
     display: flex;
     align-items: center;
 }
 
-.table__tickets_modal .tbody__container .tbody-desk {
+.table__requisition_modal .tbody__container .tbody-desk {
     display: grid;
     grid-template-columns: repeat(4, 1fr) 50px 50px;
     gap: 20px;
@@ -246,28 +250,28 @@
 }
 
 
-.table__tickets_modal .table__body .tbody-desk .td {
+.table__requisition_modal .table__body .tbody-desk .td {
     display: flex;
 }
 
-.table__tickets_modal .table__body .tbody-desk:hover {
+.table__requisition_modal .table__body .tbody-desk:hover {
     background-color: var(--secundary-color);
     color: #fff;
 }
 
 
-.table__tickets_modal .table__body .tbody-response {
+.table__requisition_modal .table__body .tbody-response {
     display: none;
     padding: 15px;
     border: 2px solid #1f2124;
     border-radius: 10px;
 }
 
-.table__tickets_modal .table__body .table__body .inputs__general {
+.table__requisition_modal .table__body .table__body .inputs__general {
     margin: 0;
 }
 
-.table__tickets_modal .table__body .traditional__selector {
+.table__requisition_modal .table__body .traditional__selector {
     background-color: #1f2124;
 }
 
@@ -279,19 +283,22 @@
 
  
 
+    .requisition_modal_container > .row__one > .comments {
+        grid-column: 1 / 2;
+    }
  
-    .table__tickets_modal .table__body {
+    .table__requisition_modal .table__body {
         border: none;
        
     }
 
-    .table__tickets_modal .table__head {
+    .table__requisition_modal .table__head {
         display: none;
     }
     
 
 
-    .table__tickets_modal .table__body .tbody-response {
+    .table__requisition_modal .table__body .tbody-response {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -299,7 +306,7 @@
     }
     
     
-    .table__tickets_modal .table__body .tbody-desk {
+    .table__requisition_modal .table__body .tbody-desk {
         display: none;
     }
 
@@ -310,7 +317,7 @@
 
 @media screen and (max-width: 768px) {
 
-    .tickets_modal_container .row__one {
+    .requisition_modal_container > .row__one {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -323,17 +330,8 @@
 
 
 @media screen and (max-width: 500px) {
-    .tickets_modal_container .row__one {
+    .requisition_modal_container > .row__one {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
-    }
-
-
-    .tickets_modal_container .row__two > .row__one {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
-       
     }
 }
