@@ -5,7 +5,6 @@ import { modal } from '../../../../../../redux/state/modals';
 import APIs from '../../../../../../services/APIs';
 import { setAreas } from '../../../../../../redux/state/Configurations/Areas';
 import Swal from 'sweetalert2';
-import { setSeries } from '../../../../../../redux/state/Configurations/Series';
 
 
 
@@ -13,44 +12,21 @@ const ModalAreas: React.FC = () => {
   const modalState = useSelector((state: any) => state.modals);
   const userState = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
-  const select = useSelector((store: any) => store.select);
 
   const handleModalChange = (value: any) => {
     dispatch(modal(value));
   };
 
-  const [nameModules] = useState<any>([
-    {
-      id: 1,
-      name: 'Requisiscion'
-    },
-    {
-      id: 2,
-      name: 'Orden de compra'
-    },
-    {
-      id: 3,
-      name: 'Entrada'
-    },
-    {
-      id: 2,
-      name: 'Pedido'
-    }
-  ])
 
 
   const [tickets, setTickets] = useState<any>([])
 
-  const [typeSeries, setTypeSeries] = useState<any>([])
+
   const [branch, setBranch] = useState<any>([])
   console.log(tickets, branch)
 
   const fetch = async () => {
-    setTypeSeries({
-      selectName: 'Para',
-      dataSelect: nameModules,
-      options: 'name',
-    })
+
     try {
       let response: any = await APIs.getCompanies(userState.id)
       let dataG = {

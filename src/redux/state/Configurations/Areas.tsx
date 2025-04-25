@@ -6,7 +6,7 @@ export const areasSlice = createSlice({
     areas: [] as any[]  // Mantienes el array vacío en el estado inicial
   },
   reducers: {
-    setAreas: (state, action: PayloadAction<any[] | 'reset'>) => {
+    setAreas: (state: any, action: PayloadAction<any[] | 'reset'>) => {
         if (action.payload === 'reset') {
           state.series = [];  // Aquí resetemos solo la propiedad 'series'
         } else {

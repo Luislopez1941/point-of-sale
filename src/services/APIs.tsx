@@ -49,7 +49,7 @@ const APIs = {
       return ConfigurationAPIs.post(path, data);
     },
   
-    getSeries: async (data: any, customPath?: string) => {
+    getSeries: async (_: any, customPath?: string) => {
       // const path = customPath || `tickets/get?companyId=${data.companyId}&branchId=${data.branchId}`;
       const path = customPath || `series/get`;
       return ConfigurationAPIs.get(path);
@@ -63,7 +63,7 @@ const APIs = {
         return ConfigurationAPIs.post(path, data);
       },
     
-      getAreas: async (data: any, customPath?: string) => {
+      getAreas: async (_: any, customPath?: string) => {
         // const path = customPath || `tickets/get?companyId=${data.companyId}&branchId=${data.branchId}`;
         const path = customPath || `areas/get`;
         return ConfigurationAPIs.get(path);

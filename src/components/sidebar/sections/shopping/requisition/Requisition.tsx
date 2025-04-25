@@ -30,7 +30,7 @@ const Requisition: React.FC = () => {
         companyId: response.data[0].id,
         branchId: 0
       }
-      let tickets = await APIs.getTickets(dataG)
+      let tickets: any = await APIs.getTickets(dataG)
 
       setTickets(tickets.data)
 

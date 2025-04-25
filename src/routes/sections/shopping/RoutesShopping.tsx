@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes} from "react-router-dom";
 import { PrivateRoutes } from "../../../models/routes";
-import Requisition from '../../../components/sidebar/sections/shopping/requisition/requisition';
+import Requisition from '../../../components/sidebar/sections/shopping/requisition/Requisition';
 
 const RoutesShopping: React.FC = () => {
   return (
