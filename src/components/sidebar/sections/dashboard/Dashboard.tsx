@@ -184,9 +184,9 @@ const Dashboard: React.FC = () => {
 
                         <div className="card card--upgrade">
                             <div className="card__content">
-                                <h3>Upgrade</h3>
-                                <p>Explore premium features and opportunities</p>
-                                <button className="btn-upgrade">Go Pro</button>
+                                <h3>Actualizar</h3>
+                                <p>Explora funciones y oportunidades premium</p>
+                                <button className="btn-upgrade">Hazte premium</button>
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@ const Dashboard: React.FC = () => {
                     <div className="dashboard__stats">
                         <div className="stats__weekly">
                             <div className="stats__header">
-                                <h3>User in The Last Week</h3>
+                                <h3>Usuario en la última semana</h3>
                                 <div className="stats__percent">+ 3.2%</div>
                             </div>
                             <div className="stats__chart">
@@ -204,7 +204,7 @@ const Dashboard: React.FC = () => {
                                         <XAxis dataKey="day" axisLine={false} tickLine={false} />
                                         <YAxis hide={true} />
                                         <Tooltip content={<CustomTooltip />} />
-                                        <Bar dataKey="value" fill="var(--sidebar-background)" radius={[4, 4, 0, 0]} />
+                                        <Bar dataKey="value" fill="#bf6903" radius={[4, 4, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
@@ -212,8 +212,8 @@ const Dashboard: React.FC = () => {
 
                         <div className="stats__monthly">
                             <div className="stats__header">
-                                <h3>Monthly Profits</h3>
-                                <p>Total Performance 25%</p>
+                                <h3>Ganancias mensuales</h3>
+                                <p>Rendimiento total 25%</p>
                             </div>
                             <div className="stats__donut">
                                 <ResponsiveContainer width="100%" height={200}>
